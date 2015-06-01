@@ -14,12 +14,14 @@
 # Class definition                                                             #
 ################################################################################
 
-setClass(
-  Class = 'TextGrid',
-  contains = c('list'),
-  slots    = c(textGridXMin = 'numeric',
-               textGridXMax = 'numeric')
-  )
+
+#' TextGrid class
+#' @slot textGridXMin
+#' @slot textGridXMax
+TextGrid <- setClass('TextGrid',
+  contains = 'list',
+  slots = list(textGridXMin = 'numeric', textGridXMax = 'numeric')
+)
 
 
 
@@ -75,7 +77,7 @@ setMethod(
   sig = c(textGridData = 'character',
           textGridXMin = 'missing', textGridXMax = 'missing'),
   def = function(textGridData) {
-    if (length(textGridData) == 1) 
+    if (length(textGridData) == 1)
       textGridData <- .ReadPraatText(textGridData)
     new(Class = 'TextGrid',
         .PraatText2TierObjects(textGridData),
@@ -104,7 +106,7 @@ if (! isGeneric('findIntervals'))
     )
 setMethod(
   f   = 'findIntervals',
-  sig = c(textGrid = 'TextGrid', intervalTier = 'ANY', 
+  sig = c(textGrid = 'TextGrid', intervalTier = 'ANY',
           pattern = 'character', label = 'missing',
           xmin = 'missing', xmax = 'missing', time = 'missing'),
   def = function(textGrid, intervalTier, pattern)
@@ -136,8 +138,8 @@ setMethod(
     .intervalAtTime <- function(textGrid, intervalTier, time)
       which(intervalXMins(textGrid[[intervalTier]]) <= time &
               intervalXMaxs(textGrid[[intervalTier]]) >= time)
-    Reduce(c, 
-           Map(.intervalAtTime, 
+    Reduce(c,
+           Map(.intervalAtTime,
                textGrid = list(textGrid),
                intervalTier = intervalTier,
                time = time))
@@ -170,14 +172,14 @@ setMethod(
 # textGridXMin
 if (! isGeneric('textGridXMin'))
   setGeneric(
-    name = 'textGridXMin', 
-    def  = function(x) 
+    name = 'textGridXMin',
+    def  = function(x)
       standardGeneric('textGridXMin')
     )
 setMethod(
-  f   = 'textGridXMin', 
-  sig = c(x = 'TextGrid'), 
-  def = function(x) 
+  f   = 'textGridXMin',
+  sig = c(x = 'TextGrid'),
+  def = function(x)
     x@textGridXMin
   )
 
@@ -202,14 +204,14 @@ setMethod(
 # textGridXMax
 if (! isGeneric('textGridXMax'))
   setGeneric(
-    name = 'textGridXMax', 
-    def  = function(x) 
+    name = 'textGridXMax',
+    def  = function(x)
       standardGeneric('textGridXMax')
     )
 setMethod(
-  f   = 'textGridXMax', 
-  sig = c(x = 'TextGrid'), 
-  def = function(x) 
+  f   = 'textGridXMax',
+  sig = c(x = 'TextGrid'),
+  def = function(x)
     x@textGridXMax
   )
 
