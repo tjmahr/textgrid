@@ -14,6 +14,7 @@
 # Class definition                                                             #
 ################################################################################
 
+#' @include Tier.R
 setClass(
   Class = 'IntervalTier',
   contains = c('Tier'),
