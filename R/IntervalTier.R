@@ -21,7 +21,7 @@ setClass(
   slots    = c(intervalXMins = 'numeric',
                intervalXMaxs = 'numeric',
                intervalTexts = 'character')
-  )
+)
 
 
 
@@ -53,14 +53,14 @@ setClass(
 
 setGeneric(
   name = 'IntervalTier',
-  def  = function(tierData, tierName, tierNumber, 
+  def  = function(tierData, tierName, tierNumber,
                   intervalXMins, intervalXMaxs, intervalTexts)
     standardGeneric('IntervalTier')
   )
 
 setMethod(
   f   = 'IntervalTier',
-  sig = c(tierData = 'character', 
+  sig = c(tierData = 'character',
           tierName = 'missing', tierNumber = 'missing',
           intervalXMins = 'missing', intervalXMaxs = 'missing',
           intervalTexts = 'missing'),
@@ -90,14 +90,14 @@ setMethod(
 # intervalTexts
 if (! isGeneric('intervalTexts'))
   setGeneric(
-    name = 'intervalTexts', 
-    def  = function(x) 
+    name = 'intervalTexts',
+    def  = function(x)
       standardGeneric('intervalTexts')
   )
 setMethod(
-  f   = 'intervalTexts', 
-  sig = c(x = 'IntervalTier'), 
-  def = function(x) 
+  f   = 'intervalTexts',
+  sig = c(x = 'IntervalTier'),
+  def = function(x)
     x@intervalTexts
 )
 
@@ -122,14 +122,14 @@ setMethod(
 # intervalXMaxs
 if (! isGeneric('intervalXMaxs'))
   setGeneric(
-    name = 'intervalXMaxs', 
-    def  = function(x) 
+    name = 'intervalXMaxs',
+    def  = function(x)
       standardGeneric('intervalXMaxs')
   )
 setMethod(
-  f   = 'intervalXMaxs', 
-  sig = c(x = 'IntervalTier'), 
-  def = function(x) 
+  f   = 'intervalXMaxs',
+  sig = c(x = 'IntervalTier'),
+  def = function(x)
     x@intervalXMaxs
 )
 
@@ -140,14 +140,14 @@ setMethod(
 # intervalXMins
 if (! isGeneric('intervalXMins'))
   setGeneric(
-    name = 'intervalXMins', 
-    def  = function(x) 
+    name = 'intervalXMins',
+    def  = function(x)
       standardGeneric('intervalXMins')
   )
 setMethod(
-  f   = 'intervalXMins', 
-  sig = c(x = 'IntervalTier'), 
-  def = function(x) 
+  f   = 'intervalXMins',
+  sig = c(x = 'IntervalTier'),
+  def = function(x)
     x@intervalXMins
 )
 
@@ -185,8 +185,8 @@ setMethod(
     xMaxFmt <- paste('%', xMaxWidth, '.', precis, 'f', sep = '')
     lineFmt <- paste(xMinFmt, '---', xMaxFmt, '%s')
     for (p in seq_along(object)) {
-      message(sprintf(lineFmt, 
-                      intervalXMins(object)[p], 
+      message(sprintf(lineFmt,
+                      intervalXMins(object)[p],
                       intervalXMaxs(object)[p],
                       ifelse(!is.na(intervalTexts(object)), intervalTexts(object), '')[p]))
     }

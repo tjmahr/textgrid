@@ -42,12 +42,12 @@ if (! exists('.ExtractRegExpr'))
     2:(.CountTiers(praatText, tierRegEx) + 1)                        # indices
   )
 
-# Generate a list of numeric vectors, each of which is the sequence of 
-# numbers designating which sequences of lines of Praat text define which 
+# Generate a list of numeric vectors, each of which is the sequence of
+# numbers designating which sequences of lines of Praat text define which
 # tiers.
 .TierIndices <- function(praatText, tierRegEx = '^ {4}item')
   Map(
-    `:`, 
+    `:`,
     .TierStartLine(praatText, tierRegEx),
     .TierEndLine(praatText, tierRegEx)
     )
@@ -115,7 +115,7 @@ if (! exists('.ExtractRegExpr'))
 #   4) a start time;
 #   5) an end time; and
 #   6) a size.
-# Of these six types of information, the Tier class only formally includes 
+# Of these six types of information, the Tier class only formally includes
 # two as formal attributes (slots):
 #   a) @tierName
 #   b) @tierNumber
@@ -130,7 +130,7 @@ setClass(
   contains = c(),
   slots    = c(tierName   = 'character',
                tierNumber = 'numeric')
-  )
+)
 
 
 
@@ -147,14 +147,14 @@ setClass(
 # tierName
 if (! isGeneric('tierName'))
   setGeneric(
-    name = 'tierName', 
-    def  = function(x) 
+    name = 'tierName',
+    def  = function(x)
       standardGeneric('tierName')
     )
 setMethod(
-  f   = 'tierName', 
-  sig = c(x = 'Tier'), 
-  def = function(x) 
+  f   = 'tierName',
+  sig = c(x = 'Tier'),
+  def = function(x)
     x@tierName
   )
 

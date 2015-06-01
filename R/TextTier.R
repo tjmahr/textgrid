@@ -20,7 +20,7 @@ setClass(
   contains = c('Tier'),
   slots    = c(pointTimes = 'numeric',
                pointMarks = 'character')
-  )
+)
 
 
 
@@ -49,13 +49,13 @@ setClass(
 
 setGeneric(
   name = 'TextTier',
-  def  = function(tierData, tierName, tierNumber, pointTimes, pointMarks, ...) 
+  def  = function(tierData, tierName, tierNumber, pointTimes, pointMarks, ...)
     standardGeneric('TextTier')
   )
 
 setMethod(
   f   = 'TextTier',
-  sig = c(tierData = 'character', 
+  sig = c(tierData = 'character',
           tierName = 'missing', tierNumber = 'missing',
           pointTimes = 'missing', pointMarks = 'missing'),
   def = function(tierData)
@@ -95,14 +95,14 @@ setMethod(
 # pointTimes
 if (! isGeneric('pointTimes'))
   setGeneric(
-    name = 'pointTimes', 
-    def  = function(x) 
+    name = 'pointTimes',
+    def  = function(x)
       standardGeneric('pointTimes')
     )
 setMethod(
-  f   = 'pointTimes', 
-  sig = c(x = 'TextTier'), 
-  def = function(x) 
+  f   = 'pointTimes',
+  sig = c(x = 'TextTier'),
+  def = function(x)
     x@pointTimes
   )
 
