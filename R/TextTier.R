@@ -15,10 +15,13 @@
 ################################################################################
 
 #' @include Tier.R
-setClass(
-  Class = 'TextTier',
-  contains = c('Tier'),
-  slots    = c(pointTimes = 'numeric',
+#' @slot pointTimes
+#' @slot pointMarks
+#' @exportClass TextTier
+#' @export TextTier
+TextTier <- setClass('TextTier',
+  contains = 'Tier',
+  slots = list(pointTimes = 'numeric',
                pointMarks = 'character')
 )
 

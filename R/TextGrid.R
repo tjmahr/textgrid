@@ -18,6 +18,8 @@
 #' TextGrid class
 #' @slot textGridXMin
 #' @slot textGridXMax
+#' @export TextGrid
+#' @exportClass TextGrid
 TextGrid <- setClass('TextGrid',
   contains = 'list',
   slots = list(textGridXMin = 'numeric', textGridXMax = 'numeric')

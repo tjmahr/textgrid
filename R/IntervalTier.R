@@ -15,10 +15,14 @@
 ################################################################################
 
 #' @include Tier.R
-setClass(
-  Class = 'IntervalTier',
-  contains = c('Tier'),
-  slots    = c(intervalXMins = 'numeric',
+#' @slot intervalXMins
+#' @slot intervalXMaxs
+#' @slot intervalTexts
+#' @export IntervalTier
+#' @exportClass IntervalTier
+IntervalTier <- setClass('IntervalTier',
+  contains = 'Tier',
+  slots = list(intervalXMins = 'numeric',
                intervalXMaxs = 'numeric',
                intervalTexts = 'character')
 )
