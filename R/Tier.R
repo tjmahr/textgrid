@@ -15,56 +15,63 @@
 ################################################################################
 
 # Extracting a regular expression from a string.
-if (! exists('.ExtractRegExpr'))
-  .ExtractRegExpr <- function(x, pattern, miss = NA) {
+.ExtractRegExpr <- function(x, pattern, miss = NA) {
     extracted <- rep(miss, length(regexpr(pattern, x)))
     matches   <- regexpr(pattern, x) != -1
     extracted[matches] <- regmatches(x, m = regexpr(pattern, x))
     return(extracted)
-  }
+}
 
 # Extracting the lines of Praat text that match a given regular expression.
-.PraatLines <- function(praatText, lineRegEx)
+.PraatLines <- function(praatText, lineRegEx) {
   grep(pat = lineRegEx, x = praatText, val = TRUE)
+}
 
 # Count the number of tiers that are defined in Praat text
-.CountTiers <- function(praatText, tierRegEx = '^ {4}item')
+.CountTiers <- function(praatText, tierRegEx = patterns$tier) {
   length(.TierStartLine(praatText, tierRegEx))
+}
 
 # Find the line numbers that mark the beginnings of tiers in Praat text.
-.TierStartLine <- function(praatText, tierRegEx = '^ {4}item')
+.TierStartLine <- function(praatText, tierRegEx = patterns$tier) {
   grep(pattern = tierRegEx, x = praatText)
+}
 
 # Find the lines numbers that mark the ends of tiers in Praat text.
-.TierEndLine <- function(praatText, tierRegEx = '^ {4}item')
+.TierEndLine <- function(praatText, tierRegEx = patterns$tier) {
   `[`(
     c(.TierStartLine(praatText, tierRegEx) - 1, length(praatText)), # vector
     2:(.CountTiers(praatText, tierRegEx) + 1)                        # indices
   )
+}
+
 
 # Generate a list of numeric vectors, each of which is the sequence of
 # numbers designating which sequences of lines of Praat text define which
 # tiers.
-.TierIndices <- function(praatText, tierRegEx = '^ {4}item')
+.TierIndices <- function(praatText, tierRegEx = patterns$tier) {
   Map(
     `:`,
     .TierStartLine(praatText, tierRegEx),
     .TierEndLine(praatText, tierRegEx)
-    )
+  )
+}
+
 
 # Extract the classes of the tiers from lines of Praat text that define one
 # or more tiers.
-.TierClass <- function(praatText, tierClassRegEx = '^ {8}class')
+.TierClass <- function(praatText, tierClassRegEx = patterns$class) {
   .ExtractRegExpr(
     .ExtractRegExpr(.PraatLines(praatText, tierClassRegEx),
                     pattern = '".*"'),
     pattern = '[^"]+'
-    )
+  )
+}
 
 
 # Extract the names of the tiers from lines of Praat text that define one or
 # more tiers.
-.TierName <- function(praatText, tierNameRegEx = '^ {8}name')
+.TierName <- function(praatText, tierNameRegEx = patterns$tier_name)
   .ExtractRegExpr(
     .ExtractRegExpr(.PraatLines(praatText, tierNameRegEx),
                     pattern = '".*"'),
@@ -73,7 +80,7 @@ if (! exists('.ExtractRegExpr'))
 
 # Extract the numbers of the tiers from the lines of Praat text that define one
 # or more tiers
-.TierNumber <- function(praatText, tierNumberRegEx = '^ {4}item')
+.TierNumber <- function(praatText, tierNumberRegEx = patterns$tier)
   as.numeric(
     .ExtractRegExpr(
       .ExtractRegExpr(.PraatLines(praatText, tierNumberRegEx),

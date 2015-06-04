@@ -37,6 +37,7 @@ TextGrid <- setClass('TextGrid',
 #  Utility functions                                                        #
 #############################################################################
 
+
 .ReadPraatText <- function(tgFilePath) {
   readLines(tgFilePath)
 }
@@ -48,8 +49,7 @@ TextGrid <- setClass('TextGrid',
     ))
 }
 
-
-.SplitPraatTextIntoTiers <- function(praatText, tierRegEx = '^ {4}item') {
+.SplitPraatTextIntoTiers <- function(praatText, tierRegEx = patterns$tier) {
   Map(
     `[`,
     rep(list(praatText), .CountTiers(praatText, tierRegEx)),
@@ -61,7 +61,7 @@ TextGrid <- setClass('TextGrid',
   if (tierClass == 'TextTier') TextTier(tierText) else IntervalTier(tierText)
 }
 
-.PraatText2TierObjects <- function(praatText, tierRegEx = '^ {4}item') {
+.PraatText2TierObjects <- function(praatText, tierRegEx = patterns$tier) {
   tier.text    <- .SplitPraatTextIntoTiers(praatText, tierRegEx)
   tier.classes <- .TierClass(praatText)
   tier.objects <- Map(.TierText2TierObject, tier.text, tier.classes)
@@ -75,8 +75,9 @@ TextGrid <- setClass('TextGrid',
 
 setGeneric(
   name = 'TextGrid',
-  def  = function(textGridData, textGridXMin, textGridXMax)
+  def  = function(textGridData, textGridXMin, textGridXMax) {
     standardGeneric('TextGrid')
+  }
 )
 
 setMethod(
@@ -88,8 +89,8 @@ setMethod(
       textGridData <- .ReadPraatText(textGridData)
     new(Class = 'TextGrid',
         .PraatText2TierObjects(textGridData),
-        textGridXMin = .TextGridTime(textGridData, tgTimeRegEx = '^xmin'),
-        textGridXMax = .TextGridTime(textGridData, tgTimeRegEx = '^xmax')
+        textGridXMin = .TextGridTime(textGridData, patterns$tg_min_time),
+        textGridXMax = .TextGridTime(textGridData, patterns$tg_max_time)
         )
     })
 

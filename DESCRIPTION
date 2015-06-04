@@ -12,5 +12,6 @@ Collate:
     'IntervalTier.R'
     'TextGrid.R'
     'TextTier.R'
+    'textgrid_package.R'
 Suggests:
     testthat
