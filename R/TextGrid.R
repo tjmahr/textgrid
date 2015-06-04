@@ -37,24 +37,29 @@ TextGrid <- setClass('TextGrid',
 #  Utility functions                                                        #
 #############################################################################
 
-.ReadPraatText <- function(tgFilePath)
+.ReadPraatText <- function(tgFilePath) {
   readLines(tgFilePath)
+}
 
-.TextGridTime <- function(praatText, tgTimeRegEx)
+.TextGridTime <- function(praatText, tgTimeRegEx) {
   as.numeric(
     .ExtractRegExpr(.PraatLines(praatText, tgTimeRegEx),
                     pattern = '[0123456789]+\\.?[0123456789]*'
     ))
+}
 
-.SplitPraatTextIntoTiers <- function(praatText, tierRegEx = '^ {4}item')
+
+.SplitPraatTextIntoTiers <- function(praatText, tierRegEx = '^ {4}item') {
   Map(
     `[`,
     rep(list(praatText), .CountTiers(praatText, tierRegEx)),
     .TierIndices(praatText, tierRegEx)
     )
+}
 
-.TierText2TierObject <- function(tierText, tierClass)
+.TierText2TierObject <- function(tierText, tierClass) {
   if (tierClass == 'TextTier') TextTier(tierText) else IntervalTier(tierText)
+}
 
 .PraatText2TierObjects <- function(praatText, tierRegEx = '^ {4}item') {
   tier.text    <- .SplitPraatTextIntoTiers(praatText, tierRegEx)
