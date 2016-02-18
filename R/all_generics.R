@@ -1,67 +1,58 @@
 
 ## Slot Getters
 
-# Shared
+# TextGrid / IntervalTier / TextTier
+
+#' Get the size of Praat Textgrid or Tier
+#' @export
+setGeneric(name = 'size',
+           def = function(.Object) {standardGeneric('size')}
+)
+
+#' Get starting time of a Praat Textrid or Tier
+#' @export
+setGeneric(name = 'startTime',
+           def = function(.Object) {standardGeneric('startTime')}
+)
+
+#' Get ending time of a Praat Textrid or Tier
+#' @export
+setGeneric(name = 'endTime',
+           def = function(.Object) {standardGeneric('endTime')}
+)
+
+#' Get unit of measurement for time
+#' @export
+setGeneric(name = 'timeUnit',
+           def = function(.Object) {standardGeneric('timeUnit')}
+)
+
+
+# IntervalTier / TextTier
+
+#' Get tier name
+#' @export
+setGeneric(name = 'tierName',
+           def = function(.Object) {standardGeneric('tierName')}
+)
+
+#' Get tier number
+#' @export
+setGeneric(name = 'tierNumber',
+           def = function(.Object) {standardGeneric('tierNumber')}
+)
 
 
 # TextGrid
+
+#' @rdname TextGrid
+#' @export
 setGeneric(name = 'textGridName',
            def = function(.Object) {standardGeneric('textGridName')}
 )
-setGeneric(name = 'size',
-           def = function(.Object) {standardGeneric('size')}
-)
-setGeneric(name = 'startTime',
-           def = function(.Object) {standardGeneric('startTime')}
-)
-setGeneric(name = 'endTime',
-           def = function(.Object) {standardGeneric('endTime')}
-)
-setGeneric(name = 'timeUnit',
-           def = function(.Object) {standardGeneric('timeUnit')}
-)
 
-# IntervalTier
 
-setGeneric(name = 'startTime',
-           def = function(.Object) {standardGeneric('startTime')}
-)
-setGeneric(name = 'endTime',
-           def = function(.Object) {standardGeneric('endTime')}
-)
-setGeneric(name = 'size',
-           def = function(.Object) {standardGeneric('size')}
-)
-setGeneric(name = 'tierName',
-           def = function(.Object) {standardGeneric('tierName')}
-)
-setGeneric(name = 'tierNumber',
-           def = function(.Object) {standardGeneric('tierNumber')}
-)
-setGeneric(name = 'timeUnit',
-           def = function(.Object) {standardGeneric('timeUnit')}
-)
 
-# TextTier
-
-setGeneric(name = 'tierNumber',
-           def = function(.Object) {standardGeneric('tierNumber')}
-)
-setGeneric(name = 'tierName',
-           def = function(.Object) {standardGeneric('tierName')}
-)
-setGeneric(name = 'size',
-           def = function(.Object) {standardGeneric('size')}
-)
-setGeneric(name = 'startTime',
-           def = function(.Object) {standardGeneric('startTime')}
-)
-setGeneric(name = 'endTime',
-           def = function(.Object) {standardGeneric('endTime')}
-)
-setGeneric(name = 'timeUnit',
-           def = function(.Object) {standardGeneric('timeUnit')}
-)
 
 
 

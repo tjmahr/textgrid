@@ -256,11 +256,12 @@ validate_grid <- function(object) {
 
 
 #' TextGrid class
-#' @slot textGridName
-#' @slot size
-#' @slot startTime
-#' @slot endTime
-#' @slot timeUnit
+#' @slot textGridName name of the text grid file
+#' @slot size number of tiers
+#' @slot startTime start time of text grid
+#' @slot endTime end time of text grid
+#' @slot timeUnit measurement unit of the start and end times (seconds,
+#'   milliseconds, microseconds, nanoseconds)
 #' @export TextGrid
 #' @exportClass TextGrid
 TextGrid <- setClass(
@@ -279,10 +280,13 @@ TextGrid <- setClass(
 
 ## constructors ---------------------------------------------------------------
 
+#' @export
+#' @rdname TextGrid
 setGeneric(name = 'TextGrid',
            def  = function(x, ...) {standardGeneric('TextGrid')}
 )
 
+#' @rdname TextGrid
 setMethod(f          = 'TextGrid',
           signature  = c(x = 'character'),
           definition = function(x) {
@@ -312,6 +316,7 @@ setMethod(f          = 'TextGrid',
           }
 )
 
+#' @rdname TextGrid
 setMethod(f = 'TextGrid',
           signature  = c(x = 'IntervalTier'),
           definition = function(x, ...) {
@@ -352,31 +357,60 @@ setAs(from = 'TextGrid',
       }
 )
 
+setAs(from = 'TextGrid', to = 'data.frame',
+  def = function(from) {
+    # convert each tier to a data.frame and combine
+    data <- from@.Data
+    dfs <- lapply(data, data.frame)
+    df <- dplyr::bind_rows(dfs)
+    # include filename as column
+    old_names <- names(df)
+    df$TextGrid <- textGridName(from)
+    df <- df[c("TextGrid", old_names)]
+    # remove dplyr classes
+    as.data.frame(df, stringsAsFactors = FALSE)
+  }
+)
+
+#' @export
+as.list.TextGrid <- function(x, ...) {
+  as(x, "list")
+}
+
+#' @export
+as.data.frame.TextGrid <- function(x, ...) {
+  as(x, "data.frame")
+}
 
 
 
 ## getters --------------------------------------------------------------------
 
+#' @rdname TextGrid
 setMethod(f          = 'textGridName',
           signature  = c(.Object = 'TextGrid'),
           definition = function(.Object) {.Object@textGridName}
 )
 
+#' @rdname TextGrid
 setMethod(f          = 'size',
           signature  = c(.Object = 'TextGrid'),
           definition = function(.Object) {.Object@size}
 )
 
+#' @rdname TextGrid
 setMethod(f          = 'startTime',
           signature  = c(.Object = 'TextGrid'),
           definition = function(.Object) {.Object@startTime}
 )
 
+#' @rdname TextGrid
 setMethod(f          = 'endTime',
           signature  = c(.Object = 'TextGrid'),
           definition = function(.Object) {.Object@endTime}
 )
 
+#' @rdname TextGrid
 setMethod(f          = 'timeUnit',
           signature  = c(.Object = 'TextGrid'),
           definition = function(.Object) {.Object@timeUnit}
@@ -499,6 +533,7 @@ setMethod(f          = 'c',
 
 ## methods --------------------------------------------------------------------
 
+#' @rdname TextGrid
 setMethod(f = 'FormatAsPraatText',
           signature  = c(x = 'TextGrid'),
           definition = function(x) {
@@ -519,6 +554,7 @@ setMethod(f = 'FormatAsPraatText',
           }
 )
 
+#' @rdname TextGrid
 setMethod(f          = 'TimeSlice',
           signature  = c(x = 'TextGrid', sliceFrom = 'numeric',
                          sliceTo = 'numeric'),
@@ -543,6 +579,7 @@ setMethod(f          = 'TimeSlice',
 )
 
 
+#' @rdname TextGrid
 setMethod(f          = 'GetIntervalText',
           signature  = c(textGrid = 'TextGrid', tier = 'ANY', interval = 'numeric'),
           definition = function(textGrid, tier, interval) {
@@ -550,6 +587,7 @@ setMethod(f          = 'GetIntervalText',
           }
 )
 
+#' @rdname TextGrid
 setMethod(f          = 'GetIntervalXMin',
           signature  = c(textGrid = 'TextGrid', tier = 'ANY', interval = 'numeric'),
           definition = function(textGrid, tier, interval) {
@@ -557,6 +595,7 @@ setMethod(f          = 'GetIntervalXMin',
           }
 )
 
+#' @rdname TextGrid
 setMethod(f          = 'GetIntervalXMax',
           signature  = c(textGrid = 'TextGrid', tier = 'ANY', interval = 'numeric'),
           definition = function(textGrid, tier, interval) {

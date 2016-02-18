@@ -1,5 +1,7 @@
+#' textgrid: S4 classes for Praat Text-Grids
 #' @docType package
 #' @name textgrid
+#' @rdname textgrid-package
 #' @import stringr
 NULL
 

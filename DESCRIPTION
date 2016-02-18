@@ -1,7 +1,8 @@
 Package: textgrid
 Title: Parse and Manipulate 'Praat' Text-Grids
 Version: 0.0.0.9000
-Authors@R: person("Patrick", "Reidy", email = "patrick.francis.reidy@gmail.com", role = c("aut", "cre"))
+Authors@R: c(person("Patrick", "Reidy", email = "patrick.francis.reidy@gmail.com", role = c("aut")),
+  person("Tristan", "Mahr", email = "tristan.mahr@wisc.edu", role = c("cre")))
 Description: What the package does (one paragraph)
 Depends:
     R (>= 3.2.0)
@@ -17,4 +18,5 @@ Collate:
 Suggests:
     testthat
 RoxygenNote: 5.0.1
-Imports: stringr
+Imports: stringr,
+    dplyr

@@ -328,16 +328,23 @@ setMethod(f = 'IntervalTier',
 ## coercion -------------------------------------------------------------------
 
 # Coercion to a data.frame
-setAs(from = 'IntervalTier',
-      to   = 'data.frame',
-      def  = function(from) {
-        to.dframe <- data.frame(from@.Data, stringsAsFactors = FALSE)
-        names(to.dframe) <- from@names
-        return(to.dframe)
-      }
+setAs(from = 'IntervalTier', to   = 'data.frame',
+  def  = function(from) {
+    df <- data.frame(from@.Data, stringsAsFactors = FALSE)
+    names(df) <- from@names
+    df$TierName <- tierName(from)
+    df$TierNumber <- tierNumber(from)
+    df$TierType <- "Interval"
+    df$TimeUnit <- timeUnit(from)
+    df <- df[c("TierNumber", "TierName", "TierType", "TimeUnit", from@names)]
+    return(df)
+  }
 )
 
-
+#' @export
+as.data.frame.IntervalTier <- function(x, ...) {
+  as(x, "data.frame")
+}
 
 
 ## getters --------------------------------------------------------------------

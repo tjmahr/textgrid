@@ -272,16 +272,23 @@ setMethod(
 ## coercion -------------------------------------------------------------------
 
 # Coercion to a data.frame
-setAs(from = 'TextTier',
-      to   = 'data.frame',
-      def  = function(from) {
-        to.dframe <- data.frame(from@.Data, stringsAsFactors = FALSE)
-        names(to.dframe) <- from@names
-        return(to.dframe)
-      }
+setAs(from = 'TextTier', to   = 'data.frame',
+  def  = function(from) {
+    df <- data.frame(from@.Data, stringsAsFactors = FALSE)
+    names(df) <- from@names
+    df$TierName <- tierName(from)
+    df$TierNumber <- tierNumber(from)
+    df$TimeUnit <- timeUnit(from)
+    df$TierType <- "Text"
+    df <- df[c("TierNumber", "TierName", "TierType", "TimeUnit", from@names)]
+    return(df)
+  }
 )
 
-
+#' @export
+as.data.frame.TextTier <- function(x, ...) {
+  as(x, "data.frame")
+}
 
 
 ## getters --------------------------------------------------------------------
