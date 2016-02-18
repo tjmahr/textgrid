@@ -1,6 +1,6 @@
-#######################
-#  Utility functions  #
-#######################
+
+
+## helpers --------------------------------------------------------------------
 
 .GetIntervalXMins <- function(praatText) {
   # .GetIntervalXMinsFromPraatText is a utility function for extracting the start
@@ -230,9 +230,8 @@
 
 
 
-###################################
-#  IntervalTier class definition  #
-###################################
+
+## class definition -----------------------------------------------------------
 
 setClass(Class          = 'IntervalTier',
          representation = representation(tierNumber = 'numeric',
@@ -275,9 +274,8 @@ setClass(Class          = 'IntervalTier',
 
 
 
-#######################################
-#  IntervalTier constructor function  #
-#######################################
+
+## constructors ---------------------------------------------------------------
 
 setGeneric(name = 'IntervalTier',
            def  = function(tierData, ...) {standardGeneric('IntervalTier')}
@@ -346,9 +344,8 @@ setMethod(f = 'IntervalTier',
 
 
 
-###################################
-#  IntervalTier coercion methods  #
-###################################
+
+## coercion -------------------------------------------------------------------
 
 # Coercion to a data.frame
 setAs(from = 'IntervalTier',
@@ -362,65 +359,34 @@ setAs(from = 'IntervalTier',
 
 
 
-###################################
-#  IntervalTier slot-get methods  #
-###################################
 
-if (! isGeneric('tierNumber')) {
-  setGeneric(name = 'tierNumber',
-             def  = function(.Object) {standardGeneric('tierNumber')}
-  )
-}
+## getters --------------------------------------------------------------------
+
 setMethod(f          = 'tierNumber',
           signature  = c(.Object = 'IntervalTier'),
           definition = function(.Object) {.Object@tierNumber}
 )
 
-if (! isGeneric('tierName')) {
-  setGeneric(name = 'tierName',
-             def  = function(.Object) {standardGeneric('tierName')}
-  )
-}
 setMethod(f          = 'tierName',
           signature  = c(.Object = 'IntervalTier'),
           definition = function(.Object) {.Object@tierName}
 )
 
-if (! isGeneric('size')) {
-  setGeneric(name = 'size',
-             def  = function(.Object) {standardGeneric('size')}
-  )
-}
 setMethod(f          = 'size',
           signature  = c(.Object = 'IntervalTier'),
           definition = function(.Object) {.Object@size}
 )
 
-if (! isGeneric('startTime')) {
-  setGeneric(name = 'startTime',
-             def  = function(.Object) {standardGeneric('startTime')}
-  )
-}
 setMethod(f          = 'startTime',
           signature  = c(.Object = 'IntervalTier'),
           definition = function(.Object) {.Object@startTime}
 )
 
-if (! isGeneric('endTime')) {
-  setGeneric(name = 'endTime',
-             def  = function(.Object) {standardGeneric('endTime')}
-  )
-}
 setMethod(f          = 'endTime',
           signature  = c(.Object = 'IntervalTier'),
           definition = function(.Object) {.Object@endTime}
 )
 
-if (! isGeneric('timeUnit')) {
-  setGeneric(name = 'timeUnit',
-             def  = function(.Object) {standardGeneric('timeUnit')}
-  )
-}
 setMethod(f          = 'timeUnit',
           signature  = c(.Object = 'IntervalTier'),
           definition = function(.Object) {.Object@timeUnit}
@@ -428,15 +394,9 @@ setMethod(f          = 'timeUnit',
 
 
 
-###################################
-#  IntervalTier slot-set methods  #
-###################################
 
-if (! isGeneric('tierNumber<-')) {
-  setGeneric(name = 'tierNumber<-',
-             def  = function(.Object, value) {standardGeneric('tierNumber<-')}
-  )
-}
+## setters --------------------------------------------------------------------
+
 setReplaceMethod(f          = 'tierNumber',
                  signature  = c(.Object = 'IntervalTier', value = 'numeric'),
                  definition = function(.Object, value) {
@@ -445,11 +405,6 @@ setReplaceMethod(f          = 'tierNumber',
                  }
 )
 
-if (! isGeneric('tierName<-')) {
-  setGeneric(name = 'tierName<-',
-             def  = function(.Object, value) {standardGeneric('tierName<-')}
-  )
-}
 setReplaceMethod(f          = 'tierName',
                  signature  = c(.Object = 'IntervalTier', value = 'character'),
                  definition = function(.Object, value) {
@@ -458,11 +413,6 @@ setReplaceMethod(f          = 'tierName',
                  }
 )
 
-if (! isGeneric('size<-')) {
-  setGeneric(name = 'size<-',
-             def  = function(.Object, value) {standardGeneric('size<-')}
-  )
-}
 setReplaceMethod(f          = 'size',
                  signature  = c(.Object = 'IntervalTier', value = 'numeric'),
                  definition = function(.Object, value) {
@@ -471,11 +421,6 @@ setReplaceMethod(f          = 'size',
                  }
 )
 
-if (! isGeneric('startTime<-')) {
-  setGeneric(name = 'startTime<-',
-             def  = function(.Object, value) {standardGeneric('startTime<-')}
-  )
-}
 setReplaceMethod(f          = 'startTime',
                  signature  = c(.Object = 'IntervalTier', value = 'numeric'),
                  definition = function(.Object, value) {
@@ -484,11 +429,6 @@ setReplaceMethod(f          = 'startTime',
                  }
 )
 
-if (! isGeneric('endTime<-')) {
-  setGeneric(name = 'endTime<-',
-             def  = function(.Object, value) {standardGeneric('endTime<-')}
-  )
-}
 setReplaceMethod(f          = 'endTime',
                  signature  = c(.Object = 'IntervalTier', value = 'numeric'),
                  definition = function(.Object, value) {
@@ -497,11 +437,6 @@ setReplaceMethod(f          = 'endTime',
                  }
 )
 
-if (! isGeneric('timeUnit<-')) {
-  setGeneric(name = 'timeUnit<-',
-             def  = function(.Object, value) {standardGeneric('timeUnit<-')}
-  )
-}
 setReplaceMethod(f          = 'timeUnit',
                  signature  = c(.Object = 'IntervalTier', value = 'character'),
                  definition = function(.Object, value) {
@@ -529,9 +464,8 @@ setReplaceMethod(f          = 'timeUnit',
 
 
 
-##########################
-#  IntervalTier methods  #
-##########################
+
+## primitive methods ----------------------------------------------------------
 
 setMethod(f = '[',
           signature  = c(x = 'IntervalTier', i = 'ANY', j = 'ANY'),
@@ -554,11 +488,10 @@ setMethod(f = '[',
 )
 
 
-if (! isGeneric('FormatAsPraatText')) {
-  setGeneric(name = 'FormatAsPraatText',
-             def  = function(x, ...) {standardGeneric('FormatAsPraatText')}
-  )
-}
+
+
+## methods --------------------------------------------------------------------
+
 setMethod(f = 'FormatAsPraatText',
           signature  = c(x = 'IntervalTier'),
           definition = function(x) {
@@ -582,15 +515,6 @@ setMethod(f = 'FormatAsPraatText',
           }
 )
 
-
-
-if (! isGeneric('TimeSlice')) {
-  setGeneric(name = 'TimeSlice',
-             def  = function(x, sliceFrom, sliceTo, sliceUnit = timeUnit(x), ...) {
-               standardGeneric('TimeSlice')
-             }
-  )
-}
 setMethod(f          = 'TimeSlice',
           signature  = c(x = 'IntervalTier', sliceFrom = 'numeric',
                          sliceTo = 'numeric'),

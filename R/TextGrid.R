@@ -1,14 +1,6 @@
 
-# Author:       Patrick Reidy <reidy@ling.ohio-state.edu>
-# Affiliations: Ohio State University, Dept. of Linguistics <linguistics.osu.edu>
-#               Learning to Talk <learningtotalk.org>
 
-
-
-
-###
-#  Utility functions  #
-###
+## helpers --------------------------------------------------------------------
 
 .FindTierStartsInPraatText <- function(praatTGridText) {
   # .FindTierStartsInPraatText is a utility function for finding the line numbers
@@ -221,9 +213,8 @@
 
 
 
-###
-#  TextGrid class definition  #
-###
+
+## class definition -----------------------------------------------------------
 
 validate_grid <- function(object) {
   # Check that the startTime of the TextGrid matches
@@ -307,8 +298,7 @@ TextGrid <- setClass(
 
 
 
-
-## TextGrid constructor -------------------------------------------------------
+## constructors ---------------------------------------------------------------
 
 setGeneric(name = 'TextGrid',
            def  = function(x, ...) {standardGeneric('TextGrid')}
@@ -372,7 +362,7 @@ setMethod(f = 'TextGrid',
 
 
 
-## TextGrid coercion methods --------------------------------------------------
+## coercion -------------------------------------------------------------------
 
 setAs(from = 'TextGrid',
       to   = 'list',
@@ -386,19 +376,11 @@ setAs(from = 'TextGrid',
 
 
 
-## TextGrid slot-get methods --------------------------------------------------
-
-setGeneric(name = 'textGridName',
-           def  = function(.Object) {standardGeneric('textGridName')}
-)
+## getters --------------------------------------------------------------------
 
 setMethod(f          = 'textGridName',
           signature  = c(.Object = 'TextGrid'),
           definition = function(.Object) {.Object@textGridName}
-)
-
-setGeneric(name = 'size',
-           def  = function(.Object) {standardGeneric('size')}
 )
 
 setMethod(f          = 'size',
@@ -406,26 +388,14 @@ setMethod(f          = 'size',
           definition = function(.Object) {.Object@size}
 )
 
-setGeneric(name = 'startTime',
-           def  = function(.Object) {standardGeneric('startTime')}
-)
-
 setMethod(f          = 'startTime',
           signature  = c(.Object = 'TextGrid'),
           definition = function(.Object) {.Object@startTime}
 )
 
-setGeneric(name = 'endTime',
-           def  = function(.Object) {standardGeneric('endTime')}
-)
-
 setMethod(f          = 'endTime',
           signature  = c(.Object = 'TextGrid'),
           definition = function(.Object) {.Object@endTime}
-)
-
-setGeneric(name = 'timeUnit',
-           def  = function(.Object) {standardGeneric('timeUnit')}
 )
 
 setMethod(f          = 'timeUnit',
@@ -436,11 +406,7 @@ setMethod(f          = 'timeUnit',
 
 
 
-## IntervalTier slot-set methods ----------------------------------------------
-
-setGeneric(name = 'textGridName<-',
-           def  = function(.Object, value) {standardGeneric('textGridName<-')}
-)
+## setters --------------------------------------------------------------------
 
 setReplaceMethod(f          = 'textGridName',
                  signature  = c(.Object = 'TextGrid', value = 'character'),
@@ -448,10 +414,6 @@ setReplaceMethod(f          = 'textGridName',
                    .Object@textGridName <- value
                    return(.Object)
                  }
-)
-
-setGeneric(name = 'size<-',
-           def  = function(.Object, value) {standardGeneric('size<-')}
 )
 
 setReplaceMethod(f          = 'size',
@@ -462,10 +424,6 @@ setReplaceMethod(f          = 'size',
                  }
 )
 
-setGeneric(name = 'startTime<-',
-           def  = function(.Object, value) {standardGeneric('startTime<-')}
-)
-
 setReplaceMethod(f          = 'startTime',
                  signature  = c(.Object = 'TextGrid', value = 'numeric'),
                  definition = function(.Object, value) {
@@ -474,20 +432,12 @@ setReplaceMethod(f          = 'startTime',
                  }
 )
 
-setGeneric(name = 'endTime<-',
-           def  = function(.Object, value) {standardGeneric('endTime<-')}
-)
-
 setReplaceMethod(f          = 'endTime',
                  signature  = c(.Object = 'TextGrid', value = 'numeric'),
                  definition = function(.Object, value) {
                    .Object@endTime <- value
                    return(.Object)
                  }
-)
-
-setGeneric(name = 'timeUnit<-',
-           def  = function(.Object, value) {standardGeneric('timeUnit<-')}
 )
 
 setReplaceMethod(f          = 'timeUnit',
@@ -520,7 +470,7 @@ setReplaceMethod(f          = 'timeUnit',
 
 
 
-## TextGrid methods -----------------------------------------------------------
+## primitive methods ----------------------------------------------------------
 
 setMethod(f          = '[',
           signature  = c(x = 'TextGrid', i = 'ANY'),
@@ -539,7 +489,6 @@ setMethod(f          = '[',
             )
           }
 )
-
 
 setMethod(f          = 'c',
           signature  = c(x = 'TextGrid'),
@@ -568,9 +517,8 @@ setMethod(f          = 'c',
 
 
 
-setGeneric(name = 'FormatAsPraatText',
-           def  = function(x, ...) {standardGeneric('FormatAsPraatText')}
-)
+
+## methods --------------------------------------------------------------------
 
 setMethod(f = 'FormatAsPraatText',
           signature  = c(x = 'TextGrid'),
@@ -590,13 +538,6 @@ setMethod(f = 'FormatAsPraatText',
             praat.text <- paste(praat.text, collapse = '\n')
             return(praat.text)
           }
-)
-
-
-setGeneric(name = 'TimeSlice',
-           def  = function(x, sliceFrom, sliceTo, sliceUnit = timeUnit(x), ...) {
-             standardGeneric('TimeSlice')
-           }
 )
 
 setMethod(f          = 'TimeSlice',
@@ -622,12 +563,6 @@ setMethod(f          = 'TimeSlice',
           }
 )
 
-# GetIntervalText
-setGeneric(name = 'GetIntervalText',
-           def  = function(textGrid, tier, interval, ...) {
-             standardGeneric('GetIntervalText')
-           }
-)
 
 setMethod(f          = 'GetIntervalText',
           signature  = c(textGrid = 'TextGrid', tier = 'ANY', interval = 'numeric'),
@@ -636,26 +571,11 @@ setMethod(f          = 'GetIntervalText',
           }
 )
 
-# GetIntervalXMin
-
-setGeneric(name = 'GetIntervalXMin',
-           def  = function(textGrid, tier, interval, ...) {
-             standardGeneric('GetIntervalXMin')
-           }
-)
-
 setMethod(f          = 'GetIntervalXMin',
           signature  = c(textGrid = 'TextGrid', tier = 'ANY', interval = 'numeric'),
           definition = function(textGrid, tier, interval) {
             textGrid[[tier]]$XMin[interval]
           }
-)
-
-# GetIntervalXMax
-setGeneric(name = 'GetIntervalXMax',
-           def  = function(textGrid, tier, interval, ...) {
-             standardGeneric('GetIntervalXMax')
-           }
 )
 
 setMethod(f          = 'GetIntervalXMax',

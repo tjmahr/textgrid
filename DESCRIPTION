@@ -8,6 +8,7 @@ Depends:
 License: What license is it under?
 LazyData: true
 Collate:
+    'all_generics.R'
     'IntervalTier.R'
     'TextTier.R'
     'TextGrid.R'
