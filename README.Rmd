@@ -1,0 +1,48 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# textgrid
+
+## installation
+
+First install the devtools package, then install from this repository.
+
+```{r, eval = FALSE}
+devtools::install_github("tjmahr/textgrid")
+```
+
+## usage
+
+Load a textgrid. 
+
+```{r}
+library("textgrid")
+grid <- TextGrid("tests/testthat/assets/tones.TextGrid")
+grid
+```
+
+Extract a tier as a dataframe
+
+```{r}
+data.frame(grid[["m"]])
+```
+
+Convert textgrid into a data-frame. 
+
+```{r}
+data.frame(grid)
+```
+
