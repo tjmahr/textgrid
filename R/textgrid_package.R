@@ -4,8 +4,6 @@
 NULL
 
 
-require("stringr")
-
 
 # Package-level constants
 patterns <- list(
