@@ -249,12 +249,22 @@ setMethod(f = 'TextTier',
           }
 )
 
-setMethod(f = 'TextTier',
-          signature  = c(tierData = 'missing'),
-          definition = function(tierNumber, tierName, startTime, endTime, timeUnit) {
-            new(Class = 'TextTier',
-            )
-          })
+setMethod(
+  f = 'TextTier',
+  signature  = c(tierData = 'missing'),
+  definition = function(tierNumber, tierName, startTime, endTime, timeUnit) {
+    tierData <- data.frame(Time = numeric(0), Mark = character(0),
+                           stringsAsFactors = FALSE)
+    new(Class = 'TextTier',
+        tierData,
+        tierNumber = tierNumber,
+        tierName   = tierName,
+        size       = nrow(tierData),
+        startTime  = startTime,
+        endTime    = endTime,
+        timeUnit   = timeUnit)
+  }
+)
 
 
 
