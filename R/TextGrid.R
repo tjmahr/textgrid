@@ -534,29 +534,29 @@ setMethod(f          = 'c',
 ## methods --------------------------------------------------------------------
 
 setMethod(show, signature(object = "TextGrid"),
-          def = function(object) {
+  def = function(object) {
 
-            l1 <- paste0("Textgrid: ", textGridName(object))
-            l2 <- paste0("Start time: ", startTime(object), " (", timeUnit(object), ")")
-            l3 <- paste0("End time: ", endTime(object), " (", timeUnit(object), ")")
-            l4 <- paste0("Tiers: ", size(object))
+    l1 <- paste0("Textgrid: ", textGridName(object))
+    l2 <- paste0("Start time: ", startTime(object), " (", timeUnit(object), ")")
+    l3 <- paste0("End time: ", endTime(object), " (", timeUnit(object), ")")
+    l4 <- paste0("Tiers: ", size(object))
 
-            tier_line <- function(tier, indent = "  ") {
-              type <- stringr::str_replace(class(tier), "Tier", "")
-              char <- if (size(tier) == 1) "" else "s"
-              type <- tolower(paste0(type, char))
-              t1 <- paste0(indent,
-                           tierNumber(tier), ": ",
-                           class(tier), " \'",  tierName(tier),
-                           "\' with ", size(tier), " ", type)
-              t1
-            }
+    tier_line <- function(tier, indent = "  ") {
+      type <- stringr::str_replace(class(tier), "Tier", "")
+      char <- if (size(tier) == 1) "" else "s"
+      type <- tolower(paste0(type, char))
+      t1 <- paste0(indent,
+                   tierNumber(tier), ": ",
+                   class(tier), " \'",  tierName(tier),
+                   "\' with ", size(tier), " ", type)
+      t1
+    }
 
-            tiers <- unlist(lapply(grid@.Data, tier_line))
-            tiers <- paste0(tiers, collapse = "\n")
-            all <- paste(l1, l2, l3, l4, tiers, sep = "\n")
-            cat(all)
-          }
+    tiers <- unlist(lapply(object@.Data, tier_line))
+    tiers <- paste0(tiers, collapse = "\n")
+    all <- paste(l1, l2, l3, l4, tiers, sep = "\n")
+    cat(all)
+  }
 )
 
 #' @rdname TextGrid
