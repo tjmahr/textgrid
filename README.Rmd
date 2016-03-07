@@ -69,6 +69,7 @@ library("assertthat")
 # to demonstrate assertions.
 validate_that(has_tiers(textgrid, "word"))
 validate_that(has_tiers(textgrid, "null"))
+validate_that(has_tiers(textgrid, c("null1", NA)))
 
 # assert_that returns TRUE or an error. This form is used inside of functions or
 # scripts to make sure assumptions hold before executing additional code. I have
@@ -77,3 +78,27 @@ validate_that(has_tiers(textgrid, "null"))
 try(assert_that(has_tiers(textgrid, "null")))
 #> Error: The tier 'null' does not exist in the 'alignment.TextGrid'
 ```
+
+#### is_interval_tier, is_text_tier
+
+Test that a given tier is an interval tier or a text tier
+
+```{r}
+mixed_tiers <- TextGrid("tests/testthat/assets/tones.TextGrid")
+mixed_tiers
+
+is_text_tier(mixed_tiers, "b")
+is_text_tier(mixed_tiers, "m")
+
+is_interval_tier(mixed_tiers, "m")
+is_interval_tier(mixed_tiers, "b")
+
+# Custom failure messages
+validate_that(is_interval_tier(mixed_tiers, c("b")))
+validate_that(is_text_tier(mixed_tiers, c("m", "j")))
+
+# has_tiers() is a prerequisite for these functions
+validate_that(is_interval_tier(mixed_tiers, NA))
+
+```
+

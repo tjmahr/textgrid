@@ -95,7 +95,9 @@ library("assertthat")
 validate_that(has_tiers(textgrid, "word"))
 #> [1] TRUE
 validate_that(has_tiers(textgrid, "null"))
-#> [1] "The tier 'null' does not exist in the 'alignment.TextGrid'"
+#> [1] "Tier not found in 'alignment.TextGrid': 'null'"
+validate_that(has_tiers(textgrid, c("null1", NA)))
+#> [1] "Tiers not found in 'alignment.TextGrid': 'null1', 'NA'"
 
 # assert_that returns TRUE or an error. This form is used inside of functions or
 # scripts to make sure assumptions hold before executing additional code. I have
@@ -103,4 +105,41 @@ validate_that(has_tiers(textgrid, "null"))
 # generation of this report.
 try(assert_that(has_tiers(textgrid, "null")))
 #> Error: The tier 'null' does not exist in the 'alignment.TextGrid'
+```
+
+#### is\_interval\_tier, is\_text\_tier
+
+Test that a given tier is an interval tier or a text tier
+
+``` r
+mixed_tiers <- TextGrid("tests/testthat/assets/tones.TextGrid")
+mixed_tiers
+#> Textgrid: tones.TextGrid
+#> Start time: 0 (seconds)
+#> End time: 10 (seconds)
+#> Tiers: 4
+#>   1: IntervalTier 'm' with 2 intervals
+#>   2: IntervalTier 'j' with 3 intervals
+#>   3: TextTier 'b' with 2 texts
+#>   4: TextTier 'd' with 2 texts
+
+is_text_tier(mixed_tiers, "b")
+#> [1] TRUE
+is_text_tier(mixed_tiers, "m")
+#> [1] FALSE
+
+is_interval_tier(mixed_tiers, "m")
+#> [1] TRUE
+is_interval_tier(mixed_tiers, "b")
+#> [1] FALSE
+
+# Custom failure messages
+validate_that(is_interval_tier(mixed_tiers, c("b")))
+#> [1] "The following tier is not an interval tier in 'tones.TextGrid': 'b'"
+validate_that(is_text_tier(mixed_tiers, c("m", "j")))
+#> [1] "The following tiers are not text tiers in 'tones.TextGrid': 'm', 'j'"
+
+# has_tiers() is a prerequisite for these functions
+validate_that(is_interval_tier(mixed_tiers, NA))
+#> [1] "Tier not found in 'tones.TextGrid': 'NA'"
 ```

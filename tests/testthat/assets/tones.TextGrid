@@ -4,7 +4,7 @@ Object class = "TextGrid"
 xmin = 0 
 xmax = 10 
 tiers? <exists> 
-size = 3 
+size = 4 
 item []: 
     item [1]:
         class = "IntervalTier" 
@@ -50,3 +50,15 @@ item []:
         points [2]:
             number = 7.037283772652389 
             mark = "b2" 
+    item [4]:
+        class = "TextTier" 
+        name = "d" 
+        xmin = 0 
+        xmax = 10 
+        points: size = 2 
+        points [1]:
+            number = 2.3352263081999998 
+            mark = "d1" 
+        points [2]:
+            number = 6.19378904639584 
+            mark = "d2" 
