@@ -104,7 +104,7 @@ validate_that(has_tiers(textgrid, c("null1", NA)))
 # to wrap this example with `try` so that the failure here does not crash the
 # generation of this report.
 try(assert_that(has_tiers(textgrid, "null")))
-#> Error: The tier 'null' does not exist in the 'alignment.TextGrid'
+#> Error: Tier not found in 'alignment.TextGrid': 'null'
 ```
 
 #### is\_interval\_tier, is\_text\_tier
