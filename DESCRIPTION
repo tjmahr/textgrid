@@ -1,6 +1,6 @@
 Package: textgrid
 Title: Parse and Manipulate 'Praat' Text-Grids
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: c(person("Patrick", "Reidy", email = "patrick.francis.reidy@gmail.com", role = c("aut")),
   person("Tristan", "Mahr", email = "tristan.mahr@wisc.edu", role = c("cre")))
 Description: What the package does (one paragraph)
@@ -15,8 +15,11 @@ Collate:
     'TextTier.R'
     'TextGrid.R'
     'textgrid_package.R'
+    'assert.R'
 Suggests:
     testthat
 RoxygenNote: 5.0.1
-Imports: stringr,
-    dplyr
+Imports:
+    stringr,
+    dplyr,
+    assertthat

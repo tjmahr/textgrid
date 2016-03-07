@@ -15,6 +15,7 @@
 \alias{startTime,TextGrid-method}
 \alias{textGridName}
 \alias{textGridName,TextGrid-method}
+\alias{tierName,TextGrid-method}
 \alias{timeUnit,TextGrid-method}
 \title{TextGrid class}
 \usage{
@@ -37,6 +38,8 @@ TextGrid(x, ...)
 \S4method{endTime}{TextGrid}(.Object)
 
 \S4method{timeUnit}{TextGrid}(.Object)
+
+\S4method{tierName}{TextGrid}(object)
 
 \S4method{FormatAsPraatText}{TextGrid}(x)
 

@@ -2,7 +2,7 @@
 #' @docType package
 #' @name textgrid
 #' @rdname textgrid-package
-#' @import stringr
+#' @import stringr assertthat
 NULL
 
 

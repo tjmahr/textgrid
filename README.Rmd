@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -30,19 +28,52 @@ Load a textgrid.
 
 ```{r}
 library("textgrid")
-grid <- TextGrid("tests/testthat/assets/tones.TextGrid")
-grid
+textgrid <- TextGrid("tests/testthat/assets/alignment.TextGrid")
+textgrid
 ```
 
 Extract a tier as a dataframe
 
 ```{r}
-data.frame(grid[["m"]])
+data.frame(textgrid[["word"]])
 ```
 
-Convert textgrid into a data-frame. 
+Convert textgrid into a dataframe. 
 
 ```{r}
-data.frame(grid)
+data.frame(textgrid)
 ```
 
+
+
+### textgrid validation
+
+The package provides functions that can be used to validate assumptions about a
+textgrid. 
+
+These can be used on their own to get TRUE/FALSE values, or used with 
+[assertthat](https://github.com/hadley/assertthat) functions so that failures
+return informative messages.
+
+#### has_tiers
+
+Test that a textgrid contains certain tiers:
+
+```{r}
+# Plain use
+has_tiers(textgrid, "word")
+has_tiers(textgrid, "null")
+
+library("assertthat")
+# validate_that returns TRUE or a string containing a failure message. It's used
+# to demonstrate assertions.
+validate_that(has_tiers(textgrid, "word"))
+validate_that(has_tiers(textgrid, "null"))
+
+# assert_that returns TRUE or an error. This form is used inside of functions or
+# scripts to make sure assumptions hold before executing additional code. I have
+# to wrap this example with `try` so that the failure here does not crash the
+# generation of this report.
+try(assert_that(has_tiers(textgrid, "null")))
+#> Error: The tier 'null' does not exist in the 'alignment.TextGrid'
+```

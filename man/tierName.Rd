@@ -4,7 +4,7 @@
 \alias{tierName}
 \title{Get tier name}
 \usage{
-tierName(.Object)
+tierName(object)
 }
 \description{
 Get tier name
