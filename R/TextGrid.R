@@ -387,34 +387,54 @@ as.data.frame.TextGrid <- function(x, ...) {
 ## getters --------------------------------------------------------------------
 
 #' @rdname TextGrid
-setMethod(f          = 'textGridName',
-          signature  = c(.Object = 'TextGrid'),
-          definition = function(.Object) {.Object@textGridName}
+setMethod(
+  textGridName,
+  signature = c(.Object = "TextGrid"),
+  definition = function(.Object) .Object@textGridName
 )
 
 #' @rdname TextGrid
-setMethod(f          = 'size',
-          signature  = c(.Object = 'TextGrid'),
-          definition = function(.Object) {.Object@size}
+setMethod(
+  size,
+  signature = c(.Object = "TextGrid"),
+  definition = function(.Object) .Object@size
 )
 
 #' @rdname TextGrid
-setMethod(f          = 'startTime',
-          signature  = c(.Object = 'TextGrid'),
-          definition = function(.Object) {.Object@startTime}
+setMethod(
+  startTime,
+  signature = c(.Object = "TextGrid"),
+  definition = function(.Object) .Object@startTime
 )
 
 #' @rdname TextGrid
-setMethod(f          = 'endTime',
-          signature  = c(.Object = 'TextGrid'),
-          definition = function(.Object) {.Object@endTime}
+setMethod(
+  endTime,
+  signature = c(.Object = "TextGrid"),
+  definition = function(.Object) .Object@endTime
 )
 
 #' @rdname TextGrid
-setMethod(f          = 'timeUnit',
-          signature  = c(.Object = 'TextGrid'),
-          definition = function(.Object) {.Object@timeUnit}
+setMethod(
+  timeUnit,
+  signature = c(.Object = "TextGrid"),
+  definition = function(.Object) .Object@timeUnit
 )
+
+#' @rdname TextGrid
+setMethod(
+  tierName,
+  signature = c(object = "TextGrid"),
+  definition = function(object) unlist(lapply(object@.Data, tierName))
+)
+
+#' @rdname TextGrid
+setMethod(
+  tierType,
+  signature = c(object = "TextGrid"),
+  definition = function(object) unlist(lapply(object@.Data, tierType))
+)
+
 
 
 ## setters --------------------------------------------------------------------
@@ -555,16 +575,6 @@ setMethod(show, signature(object = "TextGrid"),
     cat(all)
   }
 )
-
-
-
-#' @rdname TextGrid
-setMethod(f = 'tierName', signature  = c(object = 'TextGrid'),
-  definition = function(object) {
-    unlist(lapply(object@.Data, tierName))
-  }
-)
-
 
 #' @rdname TextGrid
 setMethod(f = 'FormatAsPraatText',

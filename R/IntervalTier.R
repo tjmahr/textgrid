@@ -349,36 +349,47 @@ as.data.frame.IntervalTier <- function(x, ...) {
 
 ## getters --------------------------------------------------------------------
 
-setMethod(f          = 'tierNumber',
-          signature  = c(.Object = 'IntervalTier'),
-          definition = function(.Object) {.Object@tierNumber}
+setMethod(
+  tierNumber,
+  signature = c(.Object = "IntervalTier"),
+  definition = function(.Object) .Object@tierNumber
 )
 
-setMethod(f          = 'tierName',
-          signature  = c(object = 'IntervalTier'),
-          definition = function(object) {object@tierName}
+setMethod(
+  tierName,
+  signature = c(object = "IntervalTier"),
+  definition = function(object) object@tierName
 )
 
-setMethod(f          = 'size',
-          signature  = c(.Object = 'IntervalTier'),
-          definition = function(.Object) {.Object@size}
+setMethod(
+  size,
+  signature = c(.Object = "IntervalTier"),
+  definition = function(.Object) .Object@size
 )
 
-setMethod(f          = 'startTime',
-          signature  = c(.Object = 'IntervalTier'),
-          definition = function(.Object) {.Object@startTime}
+setMethod(
+  startTime,
+  signature = c(.Object = "IntervalTier"),
+  definition = function(.Object) .Object@startTime
 )
 
-setMethod(f          = 'endTime',
-          signature  = c(.Object = 'IntervalTier'),
-          definition = function(.Object) {.Object@endTime}
+setMethod(
+  endTime,
+  signature = c(.Object = "IntervalTier"),
+  definition = function(.Object) .Object@endTime
 )
 
-setMethod(f          = 'timeUnit',
-          signature  = c(.Object = 'IntervalTier'),
-          definition = function(.Object) {.Object@timeUnit}
+setMethod(
+  timeUnit,
+  signature = c(.Object = "IntervalTier"),
+  definition = function(.Object) .Object@timeUnit
 )
 
+setMethod(
+  tierType,
+  signature = c(object = "IntervalTier"),
+  definition = function(object) "IntervalTier"
+)
 
 
 

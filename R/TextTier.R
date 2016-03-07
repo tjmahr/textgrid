@@ -293,34 +293,46 @@ as.data.frame.TextTier <- function(x, ...) {
 
 ## getters --------------------------------------------------------------------
 
-setMethod(f          = 'tierNumber',
-          signature  = c(.Object = 'TextTier'),
-          definition = function(.Object) {.Object@tierNumber}
+setMethod(
+  tierNumber,
+  signature = c(.Object = "TextTier"),
+  definition = function(.Object) .Object@tierNumber
 )
 
-setMethod(f          = 'tierName',
-          signature  = c(object = 'TextTier'),
-          definition = function(object) {object@tierName}
+setMethod(
+  tierName,
+  signature = c(object = "TextTier"),
+  definition = function(object) object@tierName
 )
 
-setMethod(f          = 'size',
-          signature  = c(.Object = 'TextTier'),
-          definition = function(.Object) {.Object@size}
+setMethod(
+  size,
+  signature = c(.Object = "TextTier"),
+  definition = function(.Object) .Object@size
 )
 
-setMethod(f          = 'startTime',
-          signature  = c(.Object = 'TextTier'),
-          definition = function(.Object) {.Object@startTime}
+setMethod(
+  startTime,
+  signature = c(.Object = "TextTier"),
+  definition = function(.Object) .Object@startTime
 )
 
-setMethod(f          = 'endTime',
-          signature  = c(.Object = 'TextTier'),
-          definition = function(.Object) {.Object@endTime}
+setMethod(
+  endTime,
+  signature = c(.Object = "TextTier"),
+  definition = function(.Object) .Object@endTime
 )
 
-setMethod(f          = 'timeUnit',
-          signature  = c(.Object = 'TextTier'),
-          definition = function(.Object) {.Object@timeUnit}
+setMethod(
+  timeUnit,
+  signature = c(.Object = "TextTier"),
+  definition = function(.Object) .Object@timeUnit
+)
+
+setMethod(
+  tierType,
+  signature = c(object = "TextTier"),
+  definition = function(object) "TextTier"
 )
 
 

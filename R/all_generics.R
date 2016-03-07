@@ -33,7 +33,6 @@ setGeneric(name = 'tierName',
            def = function(object) {standardGeneric('tierName')}
 )
 
-
 # IntervalTier / TextTier
 
 #' Get tier number
@@ -42,7 +41,6 @@ setGeneric(name = 'tierNumber',
            def = function(.Object) {standardGeneric('tierNumber')}
 )
 
-
 # TextGrid
 
 #' @rdname TextGrid
@@ -50,12 +48,6 @@ setGeneric(name = 'tierNumber',
 setGeneric(name = 'textGridName',
            def = function(.Object) {standardGeneric('textGridName')}
 )
-
-
-
-
-
-
 
 
 ## Slot Setters
@@ -127,6 +119,13 @@ setGeneric(name = 'timeUnit<-',
 
 # Shared
 
+setGeneric(
+  'tierType',
+  def = function(object) standardGeneric('tierType')
+)
+
+
+
 # TextGrid
 
 setGeneric(name = 'FormatAsPraatText',
@@ -163,7 +162,6 @@ setGeneric(name = 'TimeSlice',
              standardGeneric('TimeSlice')
            }
 )
-
 
 # TextTier
 
