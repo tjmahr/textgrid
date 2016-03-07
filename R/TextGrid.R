@@ -417,8 +417,6 @@ setMethod(f          = 'timeUnit',
 )
 
 
-
-
 ## setters --------------------------------------------------------------------
 
 setReplaceMethod(f          = 'textGridName',
@@ -534,8 +532,7 @@ setMethod(f          = 'c',
 ## methods --------------------------------------------------------------------
 
 setMethod(show, signature(object = "TextGrid"),
-  def = function(object) {
-
+  definition = function(object) {
     l1 <- paste0("Textgrid: ", textGridName(object))
     l2 <- paste0("Start time: ", startTime(object), " (", timeUnit(object), ")")
     l3 <- paste0("End time: ", endTime(object), " (", timeUnit(object), ")")
@@ -558,6 +555,16 @@ setMethod(show, signature(object = "TextGrid"),
     cat(all)
   }
 )
+
+
+
+#' @rdname TextGrid
+setMethod(f = 'tierName', signature  = c(object = 'TextGrid'),
+  definition = function(object) {
+    unlist(lapply(object@.Data, tierName))
+  }
+)
+
 
 #' @rdname TextGrid
 setMethod(f = 'FormatAsPraatText',

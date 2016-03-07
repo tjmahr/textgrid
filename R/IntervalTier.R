@@ -355,8 +355,8 @@ setMethod(f          = 'tierNumber',
 )
 
 setMethod(f          = 'tierName',
-          signature  = c(.Object = 'IntervalTier'),
-          definition = function(.Object) {.Object@tierName}
+          signature  = c(object = 'IntervalTier'),
+          definition = function(object) {object@tierName}
 )
 
 setMethod(f          = 'size',

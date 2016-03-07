@@ -1,0 +1,74 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.4 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "word" 
+        xmin = 0 
+        xmax = 0.4 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.022446978981869602 
+            text = "" 
+        intervals [2]:
+            xmin = 0.022446978981869602 
+            xmax = 0.07152907971294312 
+            text = "flwr" 
+        intervals [3]:
+            xmin = 0.07152907971294312 
+            xmax = 0.4 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "label" 
+        xmin = 0 
+        xmax = 0.4 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.022446978981869602 
+            text = "" 
+        intervals [2]:
+            xmin = 0.022446978981869602 
+            xmax = 0.07152907971294312 
+            text = "flower" 
+        intervals [3]:
+            xmin = 0.07152907971294312 
+            xmax = 0.4 
+            text = "" 
+    item [3]:
+        class = "IntervalTier" 
+        name = "segment" 
+        xmin = 0 
+        xmax = 0.4 
+        intervals: size = 6 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.022446978981869602 
+            text = "" 
+        intervals [2]:
+            xmin = 0.022446978981869602 
+            xmax = 0.029543186316482638 
+            text = "f" 
+        intervals [3]:
+            xmin = 0.029543186316482638 
+            xmax = 0.04787505526423299 
+            text = "" 
+        intervals [4]:
+            xmin = 0.04787505526423299 
+            xmax = 0.057040989738108165 
+            text = "w" 
+        intervals [5]:
+            xmin = 0.057040989738108165 
+            xmax = 0.07152907971294312 
+            text = "" 
+        intervals [6]:
+            xmin = 0.07152907971294312 
+            xmax = 0.4 
+            text = "" 

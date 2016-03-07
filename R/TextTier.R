@@ -299,8 +299,8 @@ setMethod(f          = 'tierNumber',
 )
 
 setMethod(f          = 'tierName',
-          signature  = c(.Object = 'TextTier'),
-          definition = function(.Object) {.Object@tierName}
+          signature  = c(object = 'TextTier'),
+          definition = function(object) {object@tierName}
 )
 
 setMethod(f          = 'size',

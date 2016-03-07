@@ -27,14 +27,14 @@ setGeneric(name = 'timeUnit',
            def = function(.Object) {standardGeneric('timeUnit')}
 )
 
-
-# IntervalTier / TextTier
-
 #' Get tier name
 #' @export
 setGeneric(name = 'tierName',
-           def = function(.Object) {standardGeneric('tierName')}
+           def = function(object) {standardGeneric('tierName')}
 )
+
+
+# IntervalTier / TextTier
 
 #' Get tier number
 #' @export
@@ -50,6 +50,7 @@ setGeneric(name = 'tierNumber',
 setGeneric(name = 'textGridName',
            def = function(.Object) {standardGeneric('textGridName')}
 )
+
 
 
 

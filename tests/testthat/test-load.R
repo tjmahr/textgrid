@@ -10,11 +10,16 @@ context("getters")
 test_that("Getters on Textgrid", {
   grid <- TextGrid("assets/silences.TextGrid")
   expect_equal(textGridName(grid), "silences.TextGrid")
+  expect_equal(tierName(grid), "silences")
   expect_equal(startTime(grid), 0)
   expect_equal(size(grid), 1)
   expect_equal(timeUnit(grid), "seconds")
   # Confirm duration within a millisecond
   expect_equal(endTime(grid), .730, tolerance = .001)
+
+  grid2 <- TextGrid("assets/alignment.TextGrid")
+  expect_equal(tierName(grid2), c("word", "label", "segment"))
+
 })
 
 test_that("Getters on IntervalTier", {
